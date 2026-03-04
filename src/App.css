@@ -1,0 +1,460 @@
+.app {
+  min-height: 100vh;
+  padding: clamp(1.5rem, 5vw, 3rem);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.title {
+  font-family: 'Playfair Display', 'Noto Sans KR', serif;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.search-form {
+  width: 100%;
+}
+
+.search-wrap {
+  display: flex;
+  gap: 0.75rem;
+  background: var(--surface);
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text);
+  outline: none;
+  transition: background 0.2s;
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+.search-input:focus {
+  background: #f5f2ee;
+}
+
+.search-btn {
+  padding: 0.875rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.search-btn:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.search-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.search-rules {
+  margin: 0.5rem 0 0 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.search-rules code {
+  padding: 0.1em 0.35em;
+  background: var(--border);
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.search-rules-label {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.search-range {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-top: 0.75rem;
+  padding: 0.6rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.search-range-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.search-range-inputs {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.search-days-input {
+  width: 4rem;
+  padding: 0.4rem 0.5rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  text-align: center;
+}
+
+.search-days-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.search-days-input::-webkit-inner-spin-button,
+.search-days-input::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+.search-range-unit {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.search-range-hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.results-section {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  min-height: 200px;
+}
+
+.result-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.pagination-btn {
+  min-width: 2.25rem;
+  padding: 0.4rem 0.5rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.pagination-btn:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  background: #fff;
+}
+
+.pagination-btn--current {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.pagination-btn--current:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: #fff;
+}
+
+/* 카드형 결과: 뉴스사 · 제목 · 요약 · 링크 */
+.result-card {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.result-card-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.result-checkbox {
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  cursor: pointer;
+  accent-color: var(--accent);
+}
+
+.result-card-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.result-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.result-toggle-btn {
+  flex-shrink: 0;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.result-toggle-btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.result-toggle-btn[aria-expanded="true"] {
+  background: var(--accent);
+  color: #fff;
+}
+
+.result-card:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.result-source {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.result-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.result-summary {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.result-link-text {
+  font-size: 0.8rem;
+  color: var(--accent);
+  word-break: break-all;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.result-link-text:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+.results-error {
+  padding: 0.75rem 1rem;
+  background: #fef2f2;
+  color: #b91c1c;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+}
+
+/* 정리 결과 (검색창 아래) */
+.organized-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow);
+}
+
+.organized-title {
+  margin: 0 0 0.75rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.organized-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  list-style: decimal;
+}
+
+.organized-item {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.organized-item:last-child {
+  margin-bottom: 0;
+}
+
+.organized-no {
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-right: 0.25rem;
+}
+
+.organized-source {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.organized-title-text {
+  color: var(--text);
+}
+
+.organized-link {
+  font-size: 0.85rem;
+  color: var(--accent);
+  word-break: break-all;
+  text-decoration: none;
+}
+
+.organized-link:hover {
+  text-decoration: underline;
+}
+
+.result-link {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.result-link:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.result-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.results-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  padding: 1rem;
+}
+
+.results-empty p {
+  margin: 0;
+  max-width: 320px;
+}
+
+/* 오른쪽 고정 [정리하기] 버튼 - 스크롤해도 따라다님 */
+.floating-organize-btn {
+  position: fixed;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  padding: 0.65rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.floating-organize-btn:hover {
+  background: var(--accent-hover);
+}
+
+.floating-organize-btn:active {
+  transform: translateY(-50%) scale(0.98);
+}
+
+@media (max-width: 480px) {
+  .search-wrap {
+    flex-direction: column;
+  }
+
+  .search-btn {
+    width: 100%;
+  }
+}
